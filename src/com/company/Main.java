@@ -8,7 +8,7 @@ public class Main {
 	    System.out.println("This is the start!");
 	    System.out.println("Also... hello world!");
 
-	    Character juice = new Character();
+	    BattleCharacter juice = new BattleCharacter();
 
 
     }
