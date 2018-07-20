@@ -8,12 +8,12 @@ public class Character {
     }
 
     public void moveLeft() {
-        position++;
+        position--;
         //more code here
     }
 
     public void moveRight() {
-        position--;
+        position++;
         //more code here
     }
 
