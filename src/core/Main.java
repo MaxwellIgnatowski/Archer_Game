@@ -19,7 +19,7 @@ public class Main {
     	ow.generateStructure(Tileset.TREE.getTexture(), 2, 11);
     	ow.generateStructure(Tileset.TREE.getTexture(), 17, 12);
     	ow.generateStructure(Tileset.TREE.getTexture(), 8, 2);
-    	ow.createOverworld();
+    	ow.createOverworld(Tileset.GRASS);
     	ow.window.setVisible(true);
     	ow.generateRiver(3, "X");
     	ow.generateRiver(12, "Y");

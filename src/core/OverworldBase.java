@@ -19,38 +19,48 @@ public class OverworldBase{
     
     public final int MAP_WIDTH = 25;
     public final int MAP_HEIGHT = 18;
-    
+
+    private void configureWindow()
+	{
+		window = new JFrame();
+		window.setTitle("Archer Game");
+		window.setLayout(null);
+		window.getContentPane().setPreferredSize(new Dimension(1280, 720));
+		window.getContentPane().setBackground(new Color(0, 150, 255));
+		window.pack();
+		window.setResizable(false);
+		window.setLocationRelativeTo(null);
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
     public OverworldBase()
     {
-    	//Configure Window
-    	window = new JFrame();
-    	window.setTitle("Archer Game");
-    	window.setLayout(null);  
-    	window.getContentPane().setPreferredSize(new Dimension(1280, 720));
-    	window.getContentPane().setBackground(new Color(0, 150, 255));
-    	window.pack();
-    	window.setResizable(false);
-    	window.setLocationRelativeTo(null);
-    	window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	
-    	//Initialize Arrays
+		configureWindow();
+
     	tileMap = new Tile[MAP_WIDTH][MAP_HEIGHT];
     	structureMap = new Tile[MAP_WIDTH][MAP_HEIGHT];
+
+		character = new OverworldCharacter(new Position(10, 10));
     }
     
-    public OverworldBase(OverworldCharacter previousCharacter, Tile[][] tileSet) {
-        character = new OverworldCharacter(previousCharacter);
-        tileMap = tileSet;
+    public OverworldBase(OverworldCharacter previousCharacter)
+	{
+		configureWindow();
+
+		tileMap = new Tile[MAP_WIDTH][MAP_HEIGHT];
+		structureMap = new Tile[MAP_WIDTH][MAP_HEIGHT];
+
+    	character = new OverworldCharacter(previousCharacter);
     }
     
-    public void createOverworld()
+    public void createOverworld(Tileset baseBlock)
     {
     	//Create Basic Map
     	for(int o = 0; o < MAP_WIDTH; o++)
     	{
     		for(int i = 0; i < MAP_HEIGHT; i++)
     		{
-    			Tile t = new Tile(Tileset.GRASS.getTexture(), o * Tile.TILE_WIDTH, i * Tile.TILE_HEIGHT);
+    			Tile t = new Tile(baseBlock.getTexture(), o * Tile.TILE_WIDTH, i * Tile.TILE_HEIGHT);
     			tileMap[o][i] = t;
     			window.add(t.tile);
     		}
@@ -81,7 +91,7 @@ public class OverworldBase{
     	}
     }
     
-    //Creates a House
+    //Creates a structure
     /*Maybe we can change this to be more general once we add more buildings? I'm trying to think of good reasons to call tile creations through their respective biome's class (i. e. "OVERWORLD") so we:
     	1) Don't create random structures through the Main Class and 2) Make it more than just a train of methods calling one another. I'll think about it to make it clearer when we talk next.*/
     public void generateStructure(String texture, int x, int y)

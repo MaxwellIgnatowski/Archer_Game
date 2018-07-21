@@ -2,21 +2,26 @@ package image;
 
 public enum Tileset {
 
-	GRASS("src/image/grass.png"),
-	WATER("src/image/water.png"),
-	HOUSE("src/image/house1.png"),
-	TREE("src/image/tree1.png");
+	GRASS("src/image/grass.png", true),
+	WATER("src/image/water.png", false),
+	HOUSE("src/image/house1.png", false),
+	TREE("src/image/tree1.png", false);
 	
 	private final String texturePath;
+	private final boolean canWalkOn;
 	
-	private Tileset(String texturePath)
+	Tileset(String texturePath, boolean canWalkOn)
 	{
 		this.texturePath = texturePath;
+		this.canWalkOn = canWalkOn;
 	}
 	
 	public String getTexture()
 	{
 		return texturePath;
 	}
-	
+
+	public boolean canWalkOn() {
+		return canWalkOn;
+	}
 }
