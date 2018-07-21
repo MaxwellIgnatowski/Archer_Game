@@ -8,4 +8,6 @@ public class GameOverScreen {
         this.message = message;
     }
 
+    //swing magic
+
 }
