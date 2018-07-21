@@ -61,7 +61,7 @@ public class TestTitle extends JFrame
 		boss.addActionListener(e -> playAudio(BOSS));
 		
 		//Display Background Image
-		JLabel container = new JLabel(new ImageIcon(new ImageIcon("src/com/company/titleScreen.png").getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT)));
+		JLabel container = new JLabel(new ImageIcon(new ImageIcon("src/image/titleScreen.png").getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT)));
 		container.setBounds(0, 0, getWidth(), getHeight());
 		add(container);
 		

@@ -12,4 +12,12 @@ public class Position {
     public boolean equals(Position pos) {
         return this.x == pos.x && this.y == pos.y;
     }
+
+    public boolean equalsX(Position pos) {
+        return this.x == pos.x;
+    }
+
+    public boolean equalsY(Position pos) {
+        return this.y == pos.y;
+    }
 }
