@@ -1,4 +1,4 @@
-package com.company;
+package core;
 
 public class BattleCharacter {
     private int position;

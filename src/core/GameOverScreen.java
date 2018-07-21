@@ -1,4 +1,4 @@
-package com.company;
+package core;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -12,13 +12,7 @@ import javax.swing.JPanel;
 
 public class GameOverScreen extends JFrame{
 
-    private String message;
-
     public GameOverScreen(String message) {
-        
-    	//Get Message
-    	this.message = message;
-        
     	//Configure Window
     	JPanel container = new JPanel();
     	BoxLayout layout = new BoxLayout(container, BoxLayout.Y_AXIS);

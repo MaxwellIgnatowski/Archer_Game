@@ -1,4 +1,4 @@
-package com.company;
+package core;
 
 public class OverworldCharacter {
 
@@ -9,13 +9,13 @@ public class OverworldCharacter {
     //constructor used when not coming from another Overworld screen
     public OverworldCharacter(Position position) {
         this.position = position;
-        this.direction = CharacterDirection.Down;
+        this.direction = CharacterDirection.DOWN;
     }
 
     //constructor used when coming from another Overworld screen
     public OverworldCharacter(OverworldCharacter previousCharacter) {
         this.direction = previousCharacter.getDirection();
-        if(this.direction == CharacterDirection.Up || this.direction == CharacterDirection.Down)
+        if(this.direction == CharacterDirection.UP || this.direction == CharacterDirection.DOWN)
             this.position = new Position(previousCharacter.position.getX(), 0);
         else
             this.position = new Position(0, previousCharacter.position.getY());

@@ -1,4 +1,4 @@
-package com.company;
+package core;
 
 public class Position {
     private int x;
@@ -18,15 +18,15 @@ public class Position {
     }
 
     public boolean equals(Position pos) {
-        return this.x == pos.x && this.y == pos.y;
+        return x == pos.x && y == pos.y;
     }
 
     public boolean equalsX(Position pos) {
-        return this.x == pos.x;
+        return x == pos.x;
     }
 
     public boolean equalsY(Position pos) {
-        return this.y == pos.y;
+        return y == pos.y;
     }
 
     public void incrementX() {
