@@ -5,10 +5,12 @@ import java.util.Map;
 public class OverworldBase {
 
     public Tile[][] tileSet;
-    public Map<Integer, OverworldBase> connections;
+    public Map<OverworldEdge, OverworldBase> connections;
+    public OverworldCharacter character;
 
-
-    // check at every position the user is at, if it matches a value in the hashmap, and if it does
-    // then move to the matching OverworldBase
+    public OverworldBase(OverworldCharacter previousCharacter, Tile[][] tileSet) {
+        character = new OverworldCharacter(previousCharacter);
+        this.tileSet = tileSet;
+    }
 
 }
