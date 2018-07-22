@@ -20,15 +20,15 @@ public class Tile
     }
     
     //Changes a Tile's Texture
-    public void setTexture(Tile tileToChange, String texture)
+    public void setTexture(String texture)
     {
-    	tileToChange.tile.setIcon(new ImageIcon(new ImageIcon(texture).getImage().getScaledInstance(TILE_WIDTH, TILE_HEIGHT, Image.SCALE_DEFAULT)));
+    	tile.setIcon(new ImageIcon(new ImageIcon(texture).getImage().getScaledInstance(TILE_WIDTH, TILE_HEIGHT, Image.SCALE_DEFAULT)));
     }
     
 	//Deletes a Tile
-    public static void deleteTile(Tile tileToDelete)
+    public void deleteTile()
     {
-    	tileToDelete.tile.setVisible(false);
+    	tile.setVisible(false);
     }
     
 }
