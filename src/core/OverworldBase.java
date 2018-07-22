@@ -95,6 +95,8 @@ public class OverworldBase{
 		window.add(t.tile);
     }
     
+    //Creates a Path
+    /*Accepts "X" or "Y" for direction. Builds left -> right and top -> bottom.*/
     public void generatePath(Tileset texture, int x, int y, int length, String direction)
     {
     	switch(direction)
