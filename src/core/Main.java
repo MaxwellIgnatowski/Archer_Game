@@ -13,15 +13,9 @@ public class Main {
     	
     	//Testing Overworld...
     	OverworldBase ow = new OverworldBase();
-    	ow.generateStructure(Tileset.HOUSE.getTexture(), 1, 1); //Because of Java and the way I have things setup now, structures/top layer stuff must be made BEFORE grass/ground.
-    	ow.generateStructure(Tileset.HOUSE.getTexture(), 15, 6);
-    	ow.generateStructure(Tileset.HOUSE.getTexture(), 5, 9);
-    	ow.generateStructure(Tileset.TREE.getTexture(), 2, 11);
-    	ow.generateStructure(Tileset.TREE.getTexture(), 17, 12);
-    	ow.generateStructure(Tileset.TREE.getTexture(), 8, 2);
-    	ow.createOverworld(Tileset.GRASS);
-    	ow.window.setVisible(true);
-    	ow.generateRiver(3, "X");
-    	ow.generateRiver(12, "Y");
+
+    	//we'll need to handle switching from a battle screen to an overworld screen
+		//either by always creating a new OverworldBase object, or by hiding the OverworldBaseObject when a battle screen is shown
+    	OverworldBuilder builder = new OverworldBuilder();
     }
 }

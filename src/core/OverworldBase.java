@@ -1,6 +1,5 @@
 package core;
 
-import core.Tile;
 import image.Tileset;
 
 import java.awt.Color;
@@ -13,7 +12,9 @@ public class OverworldBase{
 
     public Tile[][] tileMap;
     public Tile[][] structureMap;
-    public Map<OverworldEdge, OverworldBase> connections;
+    //going to need to reimplement this, for the possibility that not every possible tile on a side leads to the other screen (trees/houses in the way)
+	//or could just design maps so that only connecting tiles that don't lead to impassible tiles are accessible
+    public Map<OverworldEdge, OverworldType> connections;
     public OverworldCharacter character;
     public JFrame window;
     
@@ -33,24 +34,17 @@ public class OverworldBase{
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+	private void resetMap()
+	{
+		tileMap = new Tile[MAP_WIDTH][MAP_HEIGHT];
+		structureMap = new Tile[MAP_WIDTH][MAP_HEIGHT];
+	}
+
     public OverworldBase()
     {
 		configureWindow();
-
-    	tileMap = new Tile[MAP_WIDTH][MAP_HEIGHT];
-    	structureMap = new Tile[MAP_WIDTH][MAP_HEIGHT];
-
-		character = new OverworldCharacter(new Position(10, 10));
-    }
-    
-    public OverworldBase(OverworldCharacter previousCharacter)
-	{
-		configureWindow();
-
-		tileMap = new Tile[MAP_WIDTH][MAP_HEIGHT];
-		structureMap = new Tile[MAP_WIDTH][MAP_HEIGHT];
-
-    	character = new OverworldCharacter(previousCharacter);
+		resetMap();
+		character = new OverworldCharacter(new Position(7, 7));
     }
     
     public void createOverworld(Tileset baseBlock)
