@@ -5,9 +5,6 @@ import image.Tileset;
 public class Main {
 
     public static void main(String[] args) {
-    	//Testing characters...
-    	BattleCharacter juice = new BattleCharacter();
-    	
     	//Testing Game Over...
     	//GameOverScreen gos = new GameOverScreen("You have fallen bravely in battle.");
     	

@@ -4,19 +4,17 @@ public class BattleCharacter {
     private int position;
     private int health;
 
-    public BattleCharacter() {
-        position = 0;
+    public BattleCharacter(int mapWidth) {
+        position = mapWidth / 2;
         health = 3;
     }
 
     public void moveLeft() {
         position--;
-        //more code here
     }
 
     public void moveRight() {
         position++;
-        //more code here
     }
 
     public void takeDamage() {
