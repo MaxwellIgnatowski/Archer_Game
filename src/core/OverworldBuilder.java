@@ -6,6 +6,8 @@ import core.OverworldBase;
 public class OverworldBuilder {
 
     public OverworldBase overworldScreen;
+    
+    public OverworldEnemy enemy1;
 
     public OverworldBuilder()
     {
@@ -60,6 +62,10 @@ public class OverworldBuilder {
         overworldScreen.generateStructure(Tileset.TREE, 22, 5);
         
         overworldScreen.generateStructure(Tileset.LILYPAD, 10, 3);
+        overworldScreen.generateStructure(Tileset.LILYPAD, 12, 12);
+        
+        enemy1 = new OverworldEnemy(new Position(440, 400));
+        overworldScreen.createEnemyHotspot(enemy1);
         
         overworldScreen.createOverworld(Tileset.GRASS);
         

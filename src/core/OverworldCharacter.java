@@ -5,6 +5,7 @@ import core.Tile;
 import image.Tileset;
 
 import java.awt.Image;
+import java.awt.geom.Area;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -38,6 +39,14 @@ public class OverworldCharacter {
     	sprite = new JLabel(new ImageIcon(new ImageIcon(Tileset.CTR_DOWN.getTexture()).getImage().getScaledInstance(Tile.TILE_WIDTH, Tile.TILE_HEIGHT, Image.SCALE_DEFAULT)));
     	sprite.setBounds(position.getX(), position.getY(), Tile.TILE_WIDTH, Tile.TILE_HEIGHT);
     }
+    
+    //Tests Collision With Enemy
+  	public boolean intersects(OverworldEnemy enemy){
+  	    Area playerArea = new Area(sprite.getBounds());
+  	    Area enemyArea = new Area(enemy.hotspot.getBounds());
+
+  	    return playerArea.intersects(enemyArea.getBounds2D());
+  	}
     
     public CharacterDirection getDirection() {
         return direction;

@@ -119,6 +119,12 @@ public class OverworldBase implements KeyListener{
 		window.add(t.tile);
     }
 
+    //Places an Enemy Tile
+  	public void createEnemyHotspot(OverworldEnemy oe)
+  	{
+  		window.add(oe.hotspot);
+  	}
+    
 	@Override
 	public void keyPressed(KeyEvent e) 
 	{
@@ -150,17 +156,11 @@ public class OverworldBase implements KeyListener{
 		
 	}
 	
-	//Places an Enemy Tile
-	public void createEnemyPoint(int x, int y)
-	{
-		//Going to add stuff here when I'm not lazy...
-	}
-	
 	@Override
-	public void keyReleased(KeyEvent e) //Might add an option to toggle this off, since it can get annoying
+	public void keyReleased(KeyEvent e)
 	{
 		character.setDirection(CharacterDirection.DOWN);
-		character.sprite.setLocation(character.getPosition().getX() - (character.getPosition().getX() % Tile.TILE_WIDTH), character.getPosition().getY() - (character.getPosition().getY() % Tile.TILE_HEIGHT));
+		character.sprite.setLocation((character.getPosition().getX() + (Tile.TILE_WIDTH / 2)) - ((character.getPosition().getX() + (Tile.TILE_WIDTH / 2)) % Tile.TILE_WIDTH), (character.getPosition().getY() + (Tile.TILE_HEIGHT / 2)) - ((character.getPosition().getY() + (Tile.TILE_HEIGHT / 2)) % Tile.TILE_HEIGHT));
 		character.setPosition((int)character.sprite.getLocation().getX(), (int)character.sprite.getLocation().getY());
 	}
 
