@@ -1,15 +1,26 @@
 package core;
 
+import core.Tile;
+
+import image.Tileset;
+
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 public class OverworldCharacter {
 
+	public JLabel sprite;
+	
     private Position position;
     private CharacterDirection direction;
-    //public image
 
     //constructor used when not coming from another Overworld screen
     public OverworldCharacter(Position position) {
         this.position = position;
         this.direction = CharacterDirection.DOWN;
+        createSprite();
     }
 
     //constructor used when coming from another Overworld screen
@@ -21,10 +32,37 @@ public class OverworldCharacter {
             this.position = new Position(0, previousCharacter.position.getY());
     }
 
+    //Creates Character Sprite
+    public void createSprite()
+    {
+    	sprite = new JLabel(new ImageIcon(new ImageIcon(Tileset.CTR_DOWN.getTexture()).getImage().getScaledInstance(Tile.TILE_WIDTH, Tile.TILE_HEIGHT, Image.SCALE_DEFAULT)));
+    	sprite.setBounds(position.getX(), position.getY(), Tile.TILE_WIDTH, Tile.TILE_HEIGHT);
+    }
+    
     public CharacterDirection getDirection() {
         return direction;
     }
 
+    public void setDirection(CharacterDirection newDirection) {
+    	direction = newDirection;
+    	
+    	switch(newDirection)
+    	{
+    	case UP:
+    		sprite.setIcon(new ImageIcon(new ImageIcon(Tileset.CTR_UP.getTexture()).getImage().getScaledInstance(Tile.TILE_WIDTH, Tile.TILE_HEIGHT, Image.SCALE_DEFAULT)));
+    		break;
+    	case LEFT:
+    		sprite.setIcon(new ImageIcon(new ImageIcon(Tileset.CTR_LEFT.getTexture()).getImage().getScaledInstance(Tile.TILE_WIDTH, Tile.TILE_HEIGHT, Image.SCALE_DEFAULT)));
+    		break;
+    	case RIGHT:
+    		sprite.setIcon(new ImageIcon(new ImageIcon(Tileset.CTR_RIGHT.getTexture()).getImage().getScaledInstance(Tile.TILE_WIDTH, Tile.TILE_HEIGHT, Image.SCALE_DEFAULT)));
+    		break;
+    	case DOWN:
+    		sprite.setIcon(new ImageIcon(new ImageIcon(Tileset.CTR_DOWN.getTexture()).getImage().getScaledInstance(Tile.TILE_WIDTH, Tile.TILE_HEIGHT, Image.SCALE_DEFAULT)));
+    		break;
+    	}
+    }
+    
     public Position getPosition() {
         return position;
     }

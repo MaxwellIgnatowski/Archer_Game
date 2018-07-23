@@ -5,4 +5,10 @@ public enum CharacterDirection {
     RIGHT,
     UP,
     DOWN;
+	
+	private CharacterDirection()
+	{
+		
+	}
+	
 }
