@@ -26,7 +26,7 @@ public class BattleBase {
     }
 
     public void startTurn() {
-
+        moveEnemies();
         addNewEnemies();
         turnNumber++;
     }
@@ -50,6 +50,7 @@ public class BattleBase {
                     }
                     if(y - currentEnemy.getSpeed() < 0) {
                         //Maybe show them hit the zone or something?
+                        character.takeDamage();
                         removeEnemy(x, y);
                     } else {
                         removeEnemy(x, y);
