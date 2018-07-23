@@ -9,6 +9,14 @@ public class Position {
         this.y = y;
     }
 
+    public void setX(int newX) {
+        x = newX;
+    }
+
+    public void setY(int newY) {
+        y = newY;
+    }
+    
     public int getX() {
         return x;
     }
@@ -30,18 +38,18 @@ public class Position {
     }
 
     public void incrementX() {
-        x++;
+        x += 3;
     }
 
     public void incrementY() {
-        y++;
+        y += 3;
     }
 
     public void decrementX() {
-        x--;
+        x -= 3;
     }
 
     public void decrementY() {
-        y--;
+        y -= 3;
     }
 }

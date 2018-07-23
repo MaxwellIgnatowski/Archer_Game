@@ -12,11 +12,12 @@ import javax.swing.JFrame;
 
 public class OverworldBase implements KeyListener{
 
-    public Tile[][] tileMap;
+	/*Going to need to re-implement this, for the possibility that not every possible tile on a side leads to the other screen (trees/houses in the way)
+	or could just design maps so that only connecting tiles that don't lead to impossible tiles are accessible*/
+	public Map<OverworldEdge, OverworldType> connections;
+	
+	public Tile[][] tileMap;
     public Tile[][] structureMap;
-    /*Going to need to re-implement this, for the possibility that not every possible tile on a side leads to the other screen (trees/houses in the way)
-		or could just design maps so that only connecting tiles that don't lead to impossible tiles are accessible*/
-    public Map<OverworldEdge, OverworldType> connections;
     public OverworldCharacter character;
     public JFrame window;
     
@@ -31,6 +32,7 @@ public class OverworldBase implements KeyListener{
 		window.add(character.sprite);
     }
     
+    //Setup Window
     private void configureWindow()
 	{
 		window = new JFrame();
@@ -47,6 +49,7 @@ public class OverworldBase implements KeyListener{
 		window.setFocusTraversalKeysEnabled(false);
 	}
 
+    //Setup Array
 	private void resetMap()
 	{
 		tileMap = new Tile[MAP_WIDTH][MAP_HEIGHT];
@@ -109,8 +112,6 @@ public class OverworldBase implements KeyListener{
     }
     
     //Creates a Structure
-    /*Maybe we can change this to be more general once we add more buildings? I'm trying to think of good reasons to call tile creations through their respective biome's class (i. e. "OVERWORLD") so we:
-    	1) Don't create random structures through the Main Class and 2) Make it more than just a train of methods calling one another. I'll think about it to make it clearer when we talk next.*/
     public void generateStructure(Tileset texture, int x, int y)
     {
     	Tile t = new Tile(texture, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);
@@ -126,28 +127,42 @@ public class OverworldBase implements KeyListener{
 		switch(key)
 		{
 		case KeyEvent.VK_W:
-					
+			character.setDirection(CharacterDirection.UP); 
+            character.moveUp();
+            character.sprite.setLocation(character.getPosition().getX(), character.getPosition().getY());	
 			break;
 		case KeyEvent.VK_A:
-			
+			character.setDirection(CharacterDirection.LEFT); 
+            character.moveLeft();
+            character.sprite.setLocation(character.getPosition().getX(), character.getPosition().getY());
 		    break;
 		case KeyEvent.VK_S:
-			
+			character.setDirection(CharacterDirection.DOWN); 
+            character.moveDown();
+            character.sprite.setLocation(character.getPosition().getX(), character.getPosition().getY());
 		    break;
-		case KeyEvent.VK_D: //THE PROBLEM: For whatever reason, whenever this method is called, it thinks that "character.sprite" does not exist, when it was clearly instantiated earlier.
-							//The only time I got this to work was when "character.sprite" was defined as "static" in "OverworldCharacter".
-			System.out.println(character.sprite); //Will print "null".
-			
-			character.setDirection(CharacterDirection.RIGHT); //Null Pointer Exception. (References "character.sprite" within the "setDirection()" method.
+		case KeyEvent.VK_D: 
+			character.setDirection(CharacterDirection.RIGHT); 
             character.moveRight();
-            character.sprite.setLocation(character.getPosition().getX(), character.getPosition().getY()); //Null Pointer Exception.
+            character.sprite.setLocation(character.getPosition().getX(), character.getPosition().getY()); 
             break;	 
 		}
 		
 	}
 	
+	//Places an Enemy Tile
+	public void createEnemyPoint(int x, int y)
+	{
+		//Going to add stuff here when I'm not lazy...
+	}
+	
 	@Override
-	public void keyReleased(KeyEvent e) {/*Unused*/}
+	public void keyReleased(KeyEvent e) //Might add an option to toggle this off, since it can get annoying
+	{
+		character.setDirection(CharacterDirection.DOWN);
+		character.sprite.setLocation(character.getPosition().getX() - (character.getPosition().getX() % Tile.TILE_WIDTH), character.getPosition().getY() - (character.getPosition().getY() % Tile.TILE_HEIGHT));
+		character.setPosition((int)character.sprite.getLocation().getX(), (int)character.sprite.getLocation().getY());
+	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {/*Unused*/}

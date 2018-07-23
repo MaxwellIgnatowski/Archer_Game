@@ -2,10 +2,10 @@ package image;
 
 public enum Tileset {
 
-	CTR_UP("src/image/archerBackward.png", true),
+	CTR_UP("src/image/archerUp.png", true),
 	CTR_LEFT("src/image/archerLeft.png", true),
 	CTR_RIGHT("src/image/archerRight.png", true),
-	CTR_DOWN("src/image/archerForward.png", true),
+	CTR_DOWN("src/image/archerDown.png", true),
 	GRASS("src/image/grass.png", true),
 	WATER("src/image/water.png", false),
 	HOUSE("src/image/house1.png", false),

@@ -37,12 +37,10 @@ public class OverworldBuilder {
         switch(type) {
             case FIELD:
                 //Need something better than this
-                setupNewScreen(new Position(40, 40));
                 buildFieldOverworld();
                 break;
             case FOREST:
                 //Need something better than this
-                setupNewScreen(new Position(40, 40));
                 buildForestOverworld();
                 break;
             default:

@@ -63,6 +63,11 @@ public class OverworldCharacter {
     	}
     }
     
+    public void setPosition(int newX, int newY) {
+    	position.setX(newX);
+    	position.setY(newY);
+    }
+    
     public Position getPosition() {
         return position;
     }
@@ -76,10 +81,10 @@ public class OverworldCharacter {
     }
 
     public void moveUp() {
-        position.incrementY();
+        position.decrementY();
     }
 
     public void moveDown() {
-        position.decrementY();
+        position.incrementY();
     }
 }
