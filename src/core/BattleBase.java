@@ -1,13 +1,20 @@
 package core;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-public class BattleBase {
+public class BattleBase implements KeyListener{
 
     public Tile[][] tileMap;
     public BattleEnemy[][] enemyMap;
     public BattleCharacter character;
+    public OverworldCharacter originalCharacter;
     public JFrame window;
     public int turnNumber;
     public ArrayList<BattleTurnSnapshot> turnList;
@@ -15,12 +22,44 @@ public class BattleBase {
     public final int MAP_WIDTH = 25;
     public final int MAP_HEIGHT = 18;
 
+    
+    //Delete this later
+    JButton quit;
+    
+    
     public BattleBase() {
         turnNumber = 0;
         character = new BattleCharacter(MAP_WIDTH);
-        //swing set up
+        configureScreen();
     }
 
+    private void configureScreen() {
+    	window = new JFrame();
+    	window.setTitle("Battle Screen");
+		window.setLayout(null);
+		window.getContentPane().setPreferredSize(new Dimension(1280, 720));
+		window.getContentPane().setBackground(new Color(125, 125, 125));
+		window.pack();
+		window.setResizable(false);
+		window.setLocationRelativeTo(null);
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.addKeyListener(this);
+		window.setFocusable(true);
+		window.setFocusTraversalKeysEnabled(false);
+		
+		
+		//Delete this later
+		quit = new JButton("Return to Overworld");
+		quit.setBounds(0, 0, 150, 25);
+		quit.addActionListener(e -> {
+				window.setVisible(false);
+				originalCharacter.canMove = true;
+		});
+		window.add(quit);
+		
+		
+    }
+    
     public void updateScreen() {
         //swing magic
     }
@@ -70,5 +109,18 @@ public class BattleBase {
     {
         enemyMap[y][x] = enemy;
     }
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+				
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+			
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {/* UNUSED */}
 
 }

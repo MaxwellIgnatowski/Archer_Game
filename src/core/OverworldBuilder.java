@@ -35,6 +35,20 @@ public class OverworldBuilder {
             overworldScreen.character = new OverworldCharacter(defaultScreenPosition);
     }
 
+    public void newBattle()
+    {
+    	enemy1.hotspot.setVisible(false);
+    	
+    	overworldScreen.character.canMove = false;
+    	overworldScreen.character.setDirection(CharacterDirection.DOWN);
+    	overworldScreen.character.sprite.setLocation((overworldScreen.character.getPosition().getX() + (Tile.TILE_WIDTH / 2)) - ((overworldScreen.character.getPosition().getX() + (Tile.TILE_WIDTH / 2)) % Tile.TILE_WIDTH), (overworldScreen.character.getPosition().getY() + (Tile.TILE_HEIGHT / 2)) - ((overworldScreen.character.getPosition().getY() + (Tile.TILE_HEIGHT / 2)) % Tile.TILE_HEIGHT));
+    	overworldScreen.character.setPosition((int)overworldScreen.character.sprite.getLocation().getX(), (int)overworldScreen.character.sprite.getLocation().getY());
+		
+		BattleBase newBattle = new BattleBase();
+		newBattle.originalCharacter = overworldScreen.character;
+		newBattle.window.setVisible(true);
+    }
+    
     public void buildOverworld(OverworldType type) {
         switch(type) {
             case FIELD:
@@ -83,9 +97,6 @@ public class OverworldBuilder {
 
     private void buildForestOverworld()
     {
-        //More Forest
-        //generateStructure for Grass
         overworldScreen.createOverworld(Tileset.TREE);
     }
-
 }

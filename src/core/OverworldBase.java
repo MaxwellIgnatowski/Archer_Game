@@ -124,36 +124,38 @@ public class OverworldBase implements KeyListener{
   	{
   		window.add(oe.hotspot);
   	}
-    
+  	
 	@Override
 	public void keyPressed(KeyEvent e) 
 	{
 		int key = e.getKeyCode();
 		
-		switch(key)
+		if(character.canMove)
 		{
-		case KeyEvent.VK_W:
-			character.setDirection(CharacterDirection.UP); 
-            character.moveUp();
-            character.sprite.setLocation(character.getPosition().getX(), character.getPosition().getY());	
-			break;
-		case KeyEvent.VK_A:
-			character.setDirection(CharacterDirection.LEFT); 
-            character.moveLeft();
-            character.sprite.setLocation(character.getPosition().getX(), character.getPosition().getY());
-		    break;
-		case KeyEvent.VK_S:
-			character.setDirection(CharacterDirection.DOWN); 
-            character.moveDown();
-            character.sprite.setLocation(character.getPosition().getX(), character.getPosition().getY());
-		    break;
-		case KeyEvent.VK_D: 
-			character.setDirection(CharacterDirection.RIGHT); 
-            character.moveRight();
-            character.sprite.setLocation(character.getPosition().getX(), character.getPosition().getY()); 
-            break;	 
+			switch(key)
+			{
+			case KeyEvent.VK_W:
+				character.setDirection(CharacterDirection.UP); 
+	            character.moveUp();
+	            character.sprite.setLocation(character.getPosition().getX(), character.getPosition().getY());	
+				break;
+			case KeyEvent.VK_A:
+				character.setDirection(CharacterDirection.LEFT); 
+	            character.moveLeft();
+	            character.sprite.setLocation(character.getPosition().getX(), character.getPosition().getY());
+			    break;
+			case KeyEvent.VK_S:
+				character.setDirection(CharacterDirection.DOWN); 
+	            character.moveDown();
+	            character.sprite.setLocation(character.getPosition().getX(), character.getPosition().getY());
+			    break;
+			case KeyEvent.VK_D: 
+				character.setDirection(CharacterDirection.RIGHT); 
+	            character.moveRight();
+	            character.sprite.setLocation(character.getPosition().getX(), character.getPosition().getY()); 
+	            break;	 
+			}
 		}
-		
 	}
 	
 	@Override
@@ -167,101 +169,3 @@ public class OverworldBase implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {/*Unused*/}
 }
-    
-    
-    
-    
-    /*OLD METHODS - In case anything ever breaks...*/
-    
-    //Creates a River
-    /*Right now, only allows creation in a single row or column. Accepts "X" or "Y" for direction argument.*/
-    /*
-    public void generateRiver(int x, int y, int length, String direction)
-    {
-    	switch(direction)
-    	{
-    	case "X":
-    		int xVal = x;
-    		int loopX = 0;
-    		
-    		while(loopX < length && xVal < MAP_WIDTH)
-    		{
-				tileMap[xVal][y].setTexture(Tileset.WATER);
-    			xVal++;
-    			loopX++;				
-    		}
-    		
-    		break;
-    	case "Y":
-    		int yVal = y;
-    		int loopY = 0;
-    		
-    		while(loopY < length && yVal < MAP_HEIGHT)
-    		{
-				tileMap[x][yVal].setTexture(Tileset.WATER);
-    			yVal++;
-    			loopY++;
-    		}
-    		
-    		break;
-	    	default:
-	    		System.out.println("ERROR: Invalid direction!");
-	    		break;
-    	}
-    }
-    
-    //Creates a Path
-    /*Accepts "X" or "Y" for direction. Builds left -> right and top -> bottom.*/
-    /*
-    public void generatePath(Tileset texture, int x, int y, int length, String direction)
-    {
-    	switch(direction)
-    	{
-	    	case "X":
-	    		int xVal = x;
-	    		int loopX = 0;
-	    		
-	    		while(loopX < length && xVal < MAP_WIDTH)
-	    		{
-	    			if(tileMap[xVal][y].getTexture().equals(Tileset.WATER))
-	    			{
-	    				tileMap[xVal][y].setTexture(Tileset.BRIDGE_HORIZONTAL);
-		    			xVal++;
-		    			loopX++;
-	    			}
-	    			else
-	    			{
-	    				tileMap[xVal][y].setTexture(texture);
-		    			xVal++;
-		    			loopX++;
-	    			}
-    				
-	    		}
-	    		
-	    		break;
-	    	case "Y":
-	    		int yVal = y;
-	    		int loopY = 0;
-	    		
-	    		while(loopY < length && yVal < MAP_HEIGHT)
-	    		{
-	    			if(tileMap[x][yVal].getTexture().equals(Tileset.WATER))
-	    			{
-	    				tileMap[x][yVal].setTexture(Tileset.BRIDGE_VERTICAL);
-		    			yVal++;
-		    			loopY++;
-	    			}
-	    			else
-	    			{
-	    				tileMap[x][yVal].setTexture(texture);
-		    			yVal++;
-		    			loopY++;
-	    			}
-	    		}
-	    		
-	    		break;
-	    	default:
-	    		System.out.println("ERROR: Invalid direction!");
-	    		break;
-    	}
-    }*/

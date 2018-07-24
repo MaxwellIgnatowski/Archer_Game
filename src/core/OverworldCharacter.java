@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 public class OverworldCharacter {
 
 	public JLabel sprite;
+	public boolean canMove;
 	
     private Position position;
     private CharacterDirection direction;
@@ -21,6 +22,7 @@ public class OverworldCharacter {
     public OverworldCharacter(Position position) {
         this.position = position;
         this.direction = CharacterDirection.DOWN;
+        canMove = true;
         createSprite();
     }
 
