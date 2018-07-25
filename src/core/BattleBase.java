@@ -17,6 +17,7 @@ public class BattleBase implements KeyListener{
     public OverworldCharacter originalCharacter;
     public JFrame window;
     public int turnNumber;
+    public boolean playerSelectingTarget;
     public ArrayList<BattleTurnSnapshot> turnList;
 
     public final int MAP_WIDTH = 25;
@@ -30,6 +31,7 @@ public class BattleBase implements KeyListener{
     public BattleBase() {
         turnNumber = 0;
         character = new BattleCharacter(MAP_WIDTH);
+        playerSelectingTarget = false;
         configureScreen();
     }
 
@@ -108,6 +110,40 @@ public class BattleBase implements KeyListener{
     private void addEnemy(BattleEnemy enemy, int x, int y)
     {
         enemyMap[y][x] = enemy;
+    }
+
+
+    //Run when the player clicks on the any of the arrow buttons
+    //If playerSelectingTarget is true, don't move anything on the screen, this would be a simple check in the tick method
+    private void purchaseArrow(ArrowBase arrow) {
+        if(character.getPointCount() > arrow.pointCost) {
+            ArrayList<Position[]> targetOptions = arrow.getTargetingInformation(character.getPosition(), MAP_HEIGHT, MAP_WIDTH);
+            showPlayerTargetingOptions(targetOptions);
+            playerSelectingTarget = true;
+
+            //When the character selects an option, call
+            //arrow.fire(convertPositionsToEnemies(targetOptions[?]))
+
+        }
+
+    }
+
+    private ArrayList<BattleEnemy> convertPositionsToEnemies(Position[] positions) {
+        ArrayList<BattleEnemy> enemies = new ArrayList<BattleEnemy>();
+        for(Position position : positions) {
+            BattleEnemy currentEnemy = enemyMap[position.getY()][position.getX()];
+            if(currentEnemy != null) {
+                enemies.add(currentEnemy);
+            }
+        }
+        return enemies;
+    }
+
+
+    private void showPlayerTargetingOptions(ArrayList<Position[]> targetOptions) {
+        //swing magic
+        //the only initially highlighted bit is the first array index of all of the possible positions, when the character
+        //mouses over it then the other elements of that array are highlighted as well
     }
 
 	@Override

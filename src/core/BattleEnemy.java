@@ -29,10 +29,10 @@ public class BattleEnemy {
         return speed;
     }
 
-    public void takeDamage()
+    public void takeDamage(int damage)
     {
-        health--;
-        if(health == 0)
+        health -= damage;
+        if(health <= 0)
             dead = true;
     }
 
