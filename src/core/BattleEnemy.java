@@ -1,16 +1,15 @@
 package core;
 
-public class BattleEnemy {
+public abstract class BattleEnemy {
 
-    private int startingPosition;
-    private int health;
-    private boolean dead;
-    private int speed;
+    public int startingPosition;
+    public int health;
+    public boolean dead;
+    public int speed;
 
-    public BattleEnemy(int startingPosition, int startingHealth)
+    public BattleEnemy(int startingPosition)
     {
         this.startingPosition = startingPosition;
-        health = startingHealth;
         dead = false;
     }
 

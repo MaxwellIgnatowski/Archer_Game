@@ -9,20 +9,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-public class BattleBase implements KeyListener{
+public class BattleBase extends Base implements KeyListener{
 
-    public Tile[][] tileMap;
     public BattleEnemy[][] enemyMap;
     public BattleCharacter character;
     public OverworldCharacter originalCharacter;
-    public JFrame window;
     public int turnNumber;
     public boolean playerSelectingTarget;
     public ArrayList<BattleTurnSnapshot> turnList;
-
-    public final int MAP_WIDTH = 25;
-    public final int MAP_HEIGHT = 18;
-
     
     //Delete this later
     JButton quit;

@@ -81,7 +81,7 @@ public class OverworldBuilder {
         enemy1 = new OverworldEnemy(new Position(440, 400));
         overworldScreen.createEnemyHotspot(enemy1);
         
-        overworldScreen.createOverworld(Tileset.GRASS);
+        overworldScreen.createBasicMap(Tileset.GRASS);
         
         overworldScreen.generateTerrainX(Tileset.WATER, 0, 3, 23);
         overworldScreen.generateTerrainY(Tileset.WATER, 12, 0, 15);
@@ -97,6 +97,6 @@ public class OverworldBuilder {
 
     private void buildForestOverworld()
     {
-        overworldScreen.createOverworld(Tileset.TREE);
+        overworldScreen.createBasicMap(Tileset.TREE);
     }
 }
