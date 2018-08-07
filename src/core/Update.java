@@ -34,7 +34,7 @@ public class Update extends OverworldBuilder implements Runnable
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		};
-		System.exit(1);;
+		System.exit(1);
 	}
 	
 	//Timer Running

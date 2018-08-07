@@ -10,15 +10,20 @@ import java.util.Map;
 
 import javax.swing.JFrame;
 
-public class OverworldBase extends Base implements KeyListener{
+public class OverworldBase implements KeyListener{
 
 	/*Going to need to re-implement this, for the possibility that not every possible tile on a side leads to the other screen (trees/houses in the way)
 	or could just design maps so that only connecting tiles that don't lead to impossible tiles are accessible*/
 	public Map<OverworldEdge, OverworldType> connections;
 
+	public Tile[][] tileMap;
+    public JFrame window;
+    
+    public final int MAP_WIDTH = 25;
+    public final int MAP_HEIGHT = 18;
+	
     public Tile[][] structureMap;
     public OverworldCharacter character;
-
 
     public OverworldBase()
     {
@@ -55,6 +60,20 @@ public class OverworldBase extends Base implements KeyListener{
     //Deletes a Tile
     public void remove(int x, int y) {
     	tileMap[x][y].deleteTile();
+    }
+    
+    //Creates a Map
+    public void createBasicMap(Tileset baseBlock)
+    {
+        for(int o = 0; o < MAP_WIDTH; o++)
+        {
+            for(int i = 0; i < MAP_HEIGHT; i++)
+            {
+                Tile t = new Tile(baseBlock, o * Tile.TILE_WIDTH, i * Tile.TILE_HEIGHT);
+                tileMap[o][i] = t;
+                window.add(t.tile);
+            }
+        }
     }
     
     //Creates Landscape Features in the X Direction

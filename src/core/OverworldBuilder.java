@@ -46,7 +46,7 @@ public class OverworldBuilder {
 		
 		BattleBase newBattle = new BattleBase();
 		newBattle.originalCharacter = overworldScreen.character;
-		newBattle.window.setVisible(true);
+		newBattle.battleWindow.setVisible(true);
     }
     
     public void buildOverworld(OverworldType type) {
