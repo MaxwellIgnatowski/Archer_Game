@@ -21,7 +21,7 @@ public class BattleBase implements KeyListener, MouseListener{
     public OverworldCharacter originalCharacter;
     public int turnNumber;
     public boolean playerSelectingTarget;
-    public ArrayList<BattleTurnSnapshot> turnList;
+    public ArrayList<BattleTurnSnapshot> enemyTurnList;
     
     public final int BATTLE_MAP_WIDTH = 25;
     public final int BATTLE_MAP_HEIGHT = 18;
@@ -34,6 +34,8 @@ public class BattleBase implements KeyListener, MouseListener{
     public BattleBase() {
         turnNumber = 0;
         character = new BattleCharacter(BATTLE_MAP_WIDTH);
+        enemyMap = new BattleEnemy[BATTLE_MAP_HEIGHT][BATTLE_MAP_WIDTH];
+        enemyTurnList = BattleBuilder.buildBattleTurnList(BattleType.TUTORIAL);
         playerSelectingTarget = false;
         configureScreen();
     }
@@ -92,13 +94,14 @@ public class BattleBase implements KeyListener, MouseListener{
 
     public void startTurn() {
         moveEnemies();
-        addNewEnemies();
+        updateScreen();
+        if(turnNumber < enemyTurnList.size()) addNewEnemies();
         turnNumber++;
     }
 
     private void addNewEnemies()
     {
-        BattleTurnSnapshot currentTurnSnapshot = turnList.get(turnNumber);
+        BattleTurnSnapshot currentTurnSnapshot = enemyTurnList.get(turnNumber);
 
         for (BattleEnemy enemy : currentTurnSnapshot.enemyList)
             enemyMap[enemy.getStartingPosition()][BATTLE_MAP_HEIGHT - 1] = enemy;
@@ -173,7 +176,7 @@ public class BattleBase implements KeyListener, MouseListener{
 	@Override
 	public void keyPressed(KeyEvent e) 
 	{
-				
+		
 	}
 
 	@Override
@@ -210,7 +213,11 @@ public class BattleBase implements KeyListener, MouseListener{
 	public void mouseExited(MouseEvent e) {/*UNUSED*/}
 
 	@Override
-	public void mousePressed(MouseEvent e) {/*UNUSED*/}
+    public void mousePressed(MouseEvent e) 
+    {
+        //Temporary, in the future turns will probably be activated somewhere else
+        startTurn();
+    }
 
 	@Override
 	public void mouseReleased(MouseEvent e) {/*UNUSED*/}
